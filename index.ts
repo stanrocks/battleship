@@ -1,7 +1,7 @@
 import { WebSocketServer } from 'ws';
 
 import { httpServer } from './src/http_server';
-import { handleCommand } from './src/commands';
+import { handleCommand } from './src/server/cmdHandler';
 
 const HTTP_PORT = 8181;
 const WS_PORT = 3000;

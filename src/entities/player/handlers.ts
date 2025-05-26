@@ -1,7 +1,8 @@
 import WebSocket from 'ws';
 
-import { RegRequest, RegRequestData, RegResponse } from 'types';
+import { RegRequest, RegResponse } from '../../server/types';
 import { addPlayer, getPlayerByName } from './store';
+import { RegRequestData } from './types';
 
 export const handleReg = function (ws: WebSocket, command: RegRequest) {
   try {

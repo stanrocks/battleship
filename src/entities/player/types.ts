@@ -3,3 +3,8 @@ export interface Player {
   name: string;
   password: string;
 }
+
+export interface RegRequestData {
+  name: string;
+  password: string;
+}
