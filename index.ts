@@ -1,5 +1,7 @@
-import { httpServer } from './src/http_server';
 import { WebSocketServer } from 'ws';
+
+import { httpServer } from './src/http_server';
+import { handleCommand } from './src/commands';
 
 const HTTP_PORT = 8181;
 const WS_PORT = 3000;
@@ -16,20 +18,20 @@ wss.on('connection', (ws) => {
   ws.on('error', console.error);
 
   ws.on('message', (data) => {
-    console.log('Received: %s', data);
+    console.log('Received raw data: %s', data);
 
     try {
       const parsed = JSON.parse(data.toString());
-      console.log('Parsed:', parsed);
+
+      handleCommand(ws, parsed);
     } catch (error) {
       console.error('Parsing error:', error);
     }
   });
 
-  // ws.send('something');
-
   ws.on('close', () => {
     console.log('Client disconnected');
+    // call fn that resets player and maybe game state
   });
 });
 
